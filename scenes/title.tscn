@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://d2c5evr8w6x70"]
+
+[ext_resource type="Script" path="res://scenes/title.gd" id="1_uer5g"]
+[ext_resource type="Texture2D" uid="uid://vadjuqlw3yvw" path="res://resources/sprites/black_pixel.png" id="1_xnvpe"]
+[ext_resource type="Texture2D" uid="uid://crocmksijhd47" path="res://resources/bblbtitle.png" id="3_i2hvm"]
+[ext_resource type="Texture2D" uid="uid://12h5q15hvsu2" path="res://resources/sprites/by_guglopwn.png" id="4_6o383"]
+[ext_resource type="Texture2D" uid="uid://osrf0wp2s46k" path="res://resources/sprites/player/ghooost_green.png" id="6_jbqbv"]
+[ext_resource type="Texture2D" uid="uid://cgdh7tshppwdf" path="res://resources/sprites/gmtk2024-logo.png" id="7_osjqt"]
+
+[node name="title" type="Node2D"]
+script = ExtResource("1_uer5g")
+
+[node name="BlackPixel" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(562, 273)
+scale = Vector2(1305.24, 803.776)
+texture = ExtResource("1_xnvpe")
+
+[node name="Bblbtitle" type="Sprite2D" parent="."]
+position = Vector2(594, 330)
+scale = Vector2(2, 2)
+texture = ExtResource("3_i2hvm")
+
+[node name="ByGuglopwn" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1043, 454)
+rotation = -0.13195
+texture = ExtResource("4_6o383")
+
+[node name="AndGhost" type="Sprite2D" parent="."]
+texture_filter = 2
+position = Vector2(900, 568)
+rotation = -0.120428
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("6_jbqbv")
+
+[node name="Gmtk2024-logo" type="Sprite2D" parent="."]
+texture_filter = 2
+position = Vector2(164, 542)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("7_osjqt")

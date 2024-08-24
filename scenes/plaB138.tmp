@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8wkb0lquyny3"]
+
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_0cy8m"]
+[ext_resource type="Texture2D" uid="uid://dk3jf1pay7ieb" path="res://resources/sprites/icon.svg" id="2_2knl7"]
+[ext_resource type="AudioStream" uid="uid://bfnwhijqwon4d" path="res://resources/audio/jump.wav" id="3_rusi3"]
+[ext_resource type="AudioStream" uid="uid://uqrd2brvw7ba" path="res://resources/audio/Land.wav" id="4_kojq3"]
+[ext_resource type="AudioStream" uid="uid://d0eih1gtk0h1h" path="res://resources/audio/damage.wav" id="5_8ytw5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2vb8t"]
+size = Vector2(121, 123)
+
+[node name="Player" type="CharacterBody2D"]
+visible = false
+collision_mask = 15
+script = ExtResource("1_0cy8m")
+
+[node name="PixelMe" type="Sprite2D" parent="."]
+texture = ExtResource("2_2knl7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_2vb8t")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="jump_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_rusi3")
+
+[node name="land_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_kojq3")
+
+[node name="damage_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_8ytw5")
+
+[node name="damage_timer" type="Timer" parent="."]
+wait_time = 1.5
+
+[connection signal="timeout" from="damage_timer" to="." method="_on_damage_timer_timeout"]

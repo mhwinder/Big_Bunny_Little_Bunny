@@ -1,0 +1,127 @@
+[gd_scene load_steps=18 format=3 uid="uid://c8wkb0lquyny3"]
+
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_0cy8m"]
+[ext_resource type="Texture2D" uid="uid://cx2papp7r3o4g" path="res://resources/sprites/icon.svg" id="2_2knl7"]
+[ext_resource type="AudioStream" uid="uid://bfnwhijqwon4d" path="res://resources/audio/jump.wav" id="3_rusi3"]
+[ext_resource type="AudioStream" uid="uid://uqrd2brvw7ba" path="res://resources/audio/Land.wav" id="4_kojq3"]
+[ext_resource type="AudioStream" uid="uid://d0eih1gtk0h1h" path="res://resources/audio/damage.wav" id="5_8ytw5"]
+[ext_resource type="Texture2D" uid="uid://dkdb3aw1tvd5w" path="res://resources/sprites/player/bun_stand.png" id="6_hfydm"]
+[ext_resource type="Texture2D" uid="uid://bru5taa3qwati" path="res://resources/sprites/player/bun_hurt.png" id="6_hhcsj"]
+[ext_resource type="Texture2D" uid="uid://c8g1h2tpiut72" path="res://resources/sprites/player/bun_walk1.png" id="7_238vx"]
+[ext_resource type="Texture2D" uid="uid://daihklyfr8xu4" path="res://resources/sprites/player/bun_jump3.png" id="7_rxhc0"]
+[ext_resource type="Texture2D" uid="uid://cbjpojwm6l5qp" path="res://resources/sprites/player/bun_walk2.png" id="8_3x1fm"]
+[ext_resource type="Texture2D" uid="uid://vngbx4lb4doo" path="res://resources/sprites/player/bun_jump4.png" id="8_88ly8"]
+[ext_resource type="Texture2D" uid="uid://dimto3wv8oxiv" path="res://resources/sprites/player/bun_jump5.png" id="9_1rk01"]
+[ext_resource type="Texture2D" uid="uid://cg5irgitfob3o" path="res://resources/sprites/player/bun_jump1.png" id="10_3svti"]
+[ext_resource type="Texture2D" uid="uid://brd0p7qf7q01x" path="res://resources/sprites/player/bun_jump2.png" id="11_1lfxm"]
+[ext_resource type="Texture2D" uid="uid://bpud5cm1gdpib" path="res://resources/sprites/player/bun_win.png" id="15_kv5vd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2vb8t"]
+size = Vector2(121, 123)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6jnpl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_hhcsj")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_rxhc0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_88ly8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_88ly8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_1rk01")
+}],
+"loop": false,
+"name": &"jump_end",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_3svti")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_1lfxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_1lfxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rxhc0")
+}],
+"loop": false,
+"name": &"jump_start",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_hfydm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_238vx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hfydm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3x1fm")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_kv5vd")
+}],
+"loop": true,
+"name": &"win",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 15
+script = ExtResource("1_0cy8m")
+
+[node name="PixelMe" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_2knl7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+scale = Vector2(0.600001, 1)
+shape = SubResource("RectangleShape2D_2vb8t")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="jump_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_rusi3")
+
+[node name="land_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_kojq3")
+
+[node name="damage_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_8ytw5")
+
+[node name="damage_timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="bun_sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 2
+position = Vector2(0, -5)
+scale = Vector2(0.55, 0.55)
+sprite_frames = SubResource("SpriteFrames_6jnpl")
+animation = &"walk"
+
+[connection signal="timeout" from="damage_timer" to="." method="_on_damage_timer_timeout"]

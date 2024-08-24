@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0hpar1dpcmww"]
+
+[ext_resource type="Script" path="res://scenes/check_point.gd" id="1_527v4"]
+[ext_resource type="Texture2D" uid="uid://dc8wh14dg3lf1" path="res://resources/sprites/checkpointv2.png" id="2_64hjh"]
+[ext_resource type="AudioStream" uid="uid://7m081wuhyrpq" path="res://resources/audio/Boooong.wav" id="2_et5be"]
+[ext_resource type="Texture2D" uid="uid://gm5ea7j5yegc" path="res://resources/sprites/checkpoint.png" id="2_tx45y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a88pq"]
+size = Vector2(50, 486)
+
+[node name="check_point" type="Area2D"]
+script = ExtResource("1_527v4")
+
+[node name="flag" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(3, -50)
+texture = ExtResource("2_64hjh")
+
+[node name="pole" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(3, -50)
+texture = ExtResource("2_tx45y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -243)
+shape = SubResource("RectangleShape2D_a88pq")
+
+[node name="checkpoint_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_et5be")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
