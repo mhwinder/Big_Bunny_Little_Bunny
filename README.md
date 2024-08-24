@@ -8,6 +8,8 @@
 
 Big Bunny Little Bunny is a game created for the GMTK Game Jam 2024. It was coded in Godot by GugloPWN with art by Ghooost. The game jam was 96 hours long but further additions and improvements are planned. The game is a platformer where you jump and avoid spikes while trying to get to the end. The main gameplay gimmick is that the player character and physics scale with the players Y poisition. As the player moves upward the player gets larger and as they move downward they get smaller.
 
+Please do not use the art created for Big Bunny Little Bunny in any other projects.
+
 ## Media
 ![Screenshot of Title screen.](screenshots/bblb_1.png)
 ![Screenshot of the starting position with controls explanation.](screenshots/bblb_2.png)
@@ -23,12 +25,11 @@ Here is a list of future work to improve the game:
 
 - Add coyote time to jumps
 - Add movement code to _physics_process()
-- Make the initial “trick” jump higher up so it's more obvious
 - New graphic to replace my weird castle 
 - Move secret shame bunny further away from play area
 - Make camera zoom based on y-axis for the player sprite
 - Add some momentum to the x-axis (only a little!)
-- Tweak level layout of that trick jump at the start to be more obvious 
+- Adjust level layout of that trick jump at the start to be more obviously impossible 
 - Add shaders + particle effects?
 - Start screen 
 	- Move starting screen away from play space 
