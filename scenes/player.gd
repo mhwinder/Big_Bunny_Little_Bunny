@@ -17,6 +17,8 @@ var game_is_on = false
 var in_air = true
 var just_fell = false
 var is_damaging
+var coyote_timer = 0
+var coyote_time_max = 10
 
 
 var my_checkpoint = Vector2(45,210)
@@ -37,10 +39,10 @@ func _ready():
 	visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(delta):
 	
 	if game_is_on:
-		action_loop()
+		action_loop(delta)
 	if not game_is_on:
 		if Input.is_action_pressed("bite"):
 			get_started()
@@ -50,7 +52,7 @@ func _process(_delta):
 	
 	
 	
-func action_loop():
+func action_loop(delta):
 	# Get player input
 	var direction = 0
 	if not is_damaging:
@@ -71,16 +73,20 @@ func action_loop():
 			$bun_sprite.stop()
 	
 	#debug_scale()
+	if Input.is_action_pressed("right") or Input.is_action_pressed("left"):
+		velocity.x = direction * speed * delta * 60  / my_scale
+	else:
+		velocity.x = velocity.x * 0.8
 		
-	velocity.x = direction * speed  / my_scale
-	velocity.y += gravity  / my_scale
+	velocity.y += gravity * delta * 60 / my_scale
 	
 	if Input.is_action_pressed("bite"):
-		if(is_on_floor()):
+		if(coyote_timer > 0):
 			if not is_damaging:
 				velocity.y = -jump_v / my_scale
 				$jump_sound.play()
 				$bun_sprite.play("jump_start")
+				coyote_timer = 0
 	if Input.is_action_just_released("bite"):
 		if velocity.y < 0:
 			velocity.y = velocity.y/4
@@ -97,11 +103,15 @@ func action_loop():
 	
 		
 	if is_on_floor() :
+		coyote_timer = coyote_time_max
 		if in_air:
 			$land_sound.play()
 			in_air = false
 			just_fell = true
 	
+	coyote_timer -= 1
+	if coyote_timer < 0:
+		coyote_timer = 0
 	
 	move_and_slide()
 	
