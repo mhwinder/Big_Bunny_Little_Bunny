@@ -5,8 +5,8 @@ var jump_v = 1000
 var gravity = 10
 
 var my_scale = 1
-var min_scale = 0.85
-var max_scale = 15
+var min_scale = 0.6
+var max_scale = 20
 var scale_slope = 0.036
 var scale_intercept = -2.5
 
