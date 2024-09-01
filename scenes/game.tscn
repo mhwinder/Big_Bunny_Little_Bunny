@@ -174,7 +174,7 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("8_xb7b7")
 
 [node name="Bblbendcard3" type="Sprite2D" parent="world"]
-position = Vector2(8858, 1131)
+position = Vector2(10858, 1131)
 scale = Vector2(0.1, 0.09)
 texture = ExtResource("10_j8oxi")
 
@@ -247,7 +247,7 @@ scale = Vector2(64.2, 7)
 position = Vector2(-168, -76)
 
 [node name="title" parent="." instance=ExtResource("9_auniy")]
-position = Vector2(-600, -698)
+position = Vector2(-2600, -698)
 
 [node name="speedrun_timer_canvas" type="CanvasLayer" parent="."]
 

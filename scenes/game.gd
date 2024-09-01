@@ -52,7 +52,7 @@ func _process(delta):
 
 func _on_end_zone_body_entered(body):
 	$Player.game_is_on = false
-	$Player.position = Vector2(8858,1130)
+	$Player.position = Vector2(10858,1130)
 	$Player.visible = false
 	$music/title_song.play()
 	$music/gameplay_song.stop()

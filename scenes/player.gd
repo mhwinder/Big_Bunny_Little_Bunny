@@ -31,7 +31,7 @@ func _ready():
 	#position = Vector2(8350,180)
 	
 	# Title screen start Position
-	position = Vector2(-30,-400)
+	position = Vector2(-2030,-400)
 	$Camera2D.zoom = Vector2(0.95,0.95)
 	print("READY")
 	visible = false
